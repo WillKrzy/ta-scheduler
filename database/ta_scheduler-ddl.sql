@@ -47,7 +47,7 @@ CREATE TABLE
 DROP TABLE IF EXISTS `preferences`;
 CREATE TABLE
 	`preferences` ( `id` INT(11) NOT NULL AUTO_INCREMENT,
-		`person_id` INT(11) NOT NULL,
+		`person_id` INT(11) NOT NULL UNIQUE,
 		`sunday_start` TIME(0),
 		`sunday_end` TIME(0),
 		`monday_start` TIME(0),

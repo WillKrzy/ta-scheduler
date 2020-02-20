@@ -167,9 +167,8 @@
         return $stmt->get_result();
     }
 
-    function insert_preferences($sun_s, $sun_e, $mon_s, $mon_e, $tue_s, $tue_e, $wed_s, $wed_e, $thur_s, $thur_e, $late_shift) {
+    function insert_preferences($id, $sun_s, $sun_e, $mon_s, $mon_e, $tue_s, $tue_e, $wed_s, $wed_e, $thur_s, $thur_e, $late_shift) {
         global $connection;
-        $id = $_SESSION['id'];
         $exist = check_pref();
         if($exist-> num_rows > 0) {
             update_preferences($sun_s, $sun_e, $mon_s, $mon_e, $tue_s, $tue_e, $wed_s, $wed_e, $thur_s, $thur_e, $late_shift);
@@ -259,6 +258,10 @@
         $stmt = $connection->prepare($queryStr);
         $stmt->bind_param("sss", $eid, $name, $role);
         $stmt->execute();
+        $idReq = get_id($eid);
+        $row = $idReq->fetch_assoc();
+        $id = $row['id'];
+        insert_preferences($id, "","","","","","","","","","", 0);
         return $stmt->get_result();
     }
 

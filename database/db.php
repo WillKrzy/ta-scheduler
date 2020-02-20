@@ -16,7 +16,7 @@
         global $connection;
         $queryStr = "UPDATE `queue` SET `queue` = ?";
         $stmt = $connection->prepare($queryStr);
-        $stmt->bind_param("s", $ques);
+        $stmt->bind_param("i", $ques);
         $stmt->execute();
     }
     function get_queue_data() {

@@ -53,6 +53,9 @@ function load_outgoing_req() {
 function ask_how_busy() {
     var ques = prompt("How many questions are on the board?");
     if (ques != null && ques != "") {
+        while(isNaN(ques)) {
+            ques = prompt("How many questions are on the board? Please enter a number");
+        }
         if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp = new XMLHttpRequest();

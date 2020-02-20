@@ -20,7 +20,7 @@ GRANT ALL PRIVILEGES ON ta_scheduler.* TO 'ta_scheduler_app' @'localhost';
 /*Table for queue*/
 DROP TABLE IF EXISTS `queue`;
 CREATE TABLE `queue` (
-	`queue` VARCHAR(100)
+	`queue` INT(5)
 	);
 
 /*Table structure for table `feedback`*/

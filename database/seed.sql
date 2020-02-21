@@ -93,12 +93,17 @@ INSERT INTO `person` VALUES (28, 'nicolew','Nicole W','ta_reg');
 INSERT INTO `person` VALUES (29, 'peters','Peter S','ta_reg');
 INSERT INTO `person` VALUES (30, 'leroyj','Leroy J','ta_reg');
 
-INSERT INTO `preferences` VALUES (1,20, '08:00:00', '17:00:00', '12:00:00', '15:00:00', '13:00:00', '23:00:00', '11:00:00', '12:00:00', '08:00:00','13:00:00', true);
-INSERT INTO `preferences` VALUES (2,15, '08:00:00','23:00:00','20:00:00','23:00:00', '','','','','','', false);
-INSERT INTO `preferences` VALUES (3,1, '11:00:00','13:00:00', '14:00:00', '18:00:00' ,'17:30:00','23:00:00', '', '', '', '', true);
-INSERT INTO `preferences` VALUES (4,13, '08:25:00', '16:00:00', '21:00:00', '23:30:00', '','','','','','', false);
-INSERT INTO `preferences` VALUES (5,19, '10:00:00', '13:30:00', '','','','','','','','', false);
-INSERT INTO `preferences` VALUES (6,11, '14:00:00' , '17:00:00','','','','','','','','', true);
+INSERT INTO `preferences` VALUES (1,20, 'WEDNESAY','08:00:00', '17:00:00', true);
+INSERT INTO `preferences` VALUES (2,15, 'THURSDAY', '08:00:00','23:00:00', false);
+INSERT INTO `preferences` VALUES (3,15, 'MONDAY', '20:00:00','23:00:00', false);
+INSERT INTO `preferences` VALUES (4,1, 'TUESDAY', '11:00:00','13:00:00', false);
+INSERT INTO `preferences` VALUES (5,1,  'SATURDAY', '14:00:00', '18:00:00', false);
+INSERT INTO `preferences` VALUES (6,1, 'FRIDAY', '11:30:00','15:00:00', true);
+INSERT INTO `preferences` VALUES (7,13, 'WEDNESDAY','08:25:00', '16:00:00', true);
+INSERT INTO `preferences` VALUES (8,13,  'MONDAY','21:00:00', '23:30:00', false);
+INSERT INTO `preferences` VALUES (9,19, 'THURSDAY','10:00:00', '13:30:00', false);
+INSERT INTO `preferences` VALUES (10,11, 'SUNDAY','14:00:00' , '17:00:00', true);
+INSERT INTO `preferences` VALUES (11,1, 'FRIDAY', '18:30:00','23:00:00', true);
 
 
 INSERT INTO `shift` VALUES (1,1,'2020-03-01 18:00:00','2020-03-1 20:00:00');

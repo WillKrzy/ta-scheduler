@@ -35,8 +35,9 @@
     }
     function manager_prefs() {
         global $connection;
-        $queryStr = "SELECT  `person`.name, sunday_start, sunday_end, monday_start, monday_end, tuesday_start, tuesday_end, wednesday_start, wednesday_start, wednesday_end, thursday_start, thursday_end, late_shifts FROM `preferences`
-        JOIN `person` ON person_id = `person`.id";
+        $queryStr = "SELECT  `person`.name, weekday, start, end, late_shifts FROM `preferences`
+        JOIN `person` ON person_id = `person`.id
+        ORDER BY person.name, weekday, start";
         $data = $connection->query($queryStr);
         return $data;
     }
@@ -167,26 +168,12 @@
         return $stmt->get_result();
     }
 
-    function insert_preferences($id, $sun_s, $sun_e, $mon_s, $mon_e, $tue_s, $tue_e, $wed_s, $wed_e, $thur_s, $thur_e, $late_shift) {
-        global $connection;
-        $exist = check_pref();
-        if($exist-> num_rows > 0) {
-            update_preferences($sun_s, $sun_e, $mon_s, $mon_e, $tue_s, $tue_e, $wed_s, $wed_e, $thur_s, $thur_e, $late_shift);
-        } else {
-            $queryStr = "INSERT INTO `preferences` VALUES(Default,?,?,?,?,?,?,?,?,?,?,?,?)";
-            $stmt = $connection->prepare($queryStr);
-            $stmt->bind_param("issssssssssi", $id, $sun_s, $sun_e, $mon_s, $mon_e, $tue_s, $tue_e, $wed_s, $wed_e, $thur_s, $thur_e, $late_shift);
-            $stmt->execute();
-        }
-
-    }
-
-    function update_preferences($sun_s, $sun_e, $mon_s, $mon_e, $tue_s, $tue_e, $wed_s, $wed_e, $thur_s, $thur_e, $late_shift) {
+    function insert_preferences($weekday, $start, $end, $late_shift) {
         global $connection;
         $id = $_SESSION['id'];
-        $queryStr = "UPDATE `preferences` SET `sunday_start` = ?, `sunday_end`=?, `monday_start`=?, `monday_end`=?, `tuesday_start`=?, `tuesday_end`=?, `wednesday_start` = ?, `wednesday_end`=?, `thursday_start`=?, `thursday_end`=? , `late_shifts` = ? WHERE person_id = ?";
+        $queryStr = "INSERT INTO `preferences` VALUES(Default,?,?,?,?)";
         $stmt = $connection->prepare($queryStr);
-        $stmt->bind_param("ssssssssssii", $sun_s, $sun_e, $mon_s, $mon_e, $tue_s, $tue_e, $wed_s, $wed_e, $thur_s, $thur_e, $late_shift, $id);
+        $stmt->bind_param("isssi", $id, $weekday, $start, $end, $late_shift);
         $stmt->execute();
     }
 
@@ -258,10 +245,6 @@
         $stmt = $connection->prepare($queryStr);
         $stmt->bind_param("sss", $eid, $name, $role);
         $stmt->execute();
-        $idReq = get_id($eid);
-        $row = $idReq->fetch_assoc();
-        $id = $row['id'];
-        insert_preferences($id, "","","","","","","","","","", 0);
         return $stmt->get_result();
     }
 

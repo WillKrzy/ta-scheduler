@@ -51,11 +51,8 @@
                     <thead>
                         <tr>
                             <th>TA Name</th>
-                            <th>Sun</th>
-                            <th>Mon</th>
-                            <th>Tues</th>
-                            <th>Wed</th>
-                            <th>Thurs</th>
+                            <th>Weekday</th>
+                            <th>Times</th>
                             <th>Can Work Late Shifts?</th>
                             <th>
                                 <button class="btn btn-primary" type="button" data-toggle="collapse"

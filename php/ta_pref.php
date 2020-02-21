@@ -8,19 +8,10 @@
         echo $resp['name'];
         echo "</td>";
         echo "<td>";
-        echoColumn($resp['sunday_start'], $resp['sunday_end']);
+        echo $resp['weekday'];
         echo "</td>";
         echo "<td>";
-        echoColumn($resp['monday_start'], $resp['monday_end']);
-        echo "</td>";
-        echo "<td>";
-        echoColumn($resp['tuesday_start'], $resp['tuesday_end']);
-        echo "</td>";
-        echo "<td>";
-        echoColumn($resp['wednesday_start'], $resp['wednesday_end']);
-        echo "</td>";
-        echo "<td>";
-        echoColumn($resp['thursday_start'], $resp['thursday_end']);
+        echoColumn($resp['start'], $resp['end']);
         echo "</td>";
         echo "<td>";
         if($resp['late_shifts'] == 1) {

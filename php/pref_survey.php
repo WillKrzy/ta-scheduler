@@ -49,14 +49,18 @@
 
 if(isset($_POST['submit'])) {
 
-    $late = "";
-    if($_POST["late_shifts"] == "Yes") {
-        $late = 1;
-    } else {
-        $late = 0;
+    $len = count($_POST["start"]);
+    for($i=0; $i < $len; $i++) {
+        $late = "";
+        if($_POST["late_shifts".$i] == "Yes") {
+            $late = 1;
+        } else {
+            $late = 0;
+        }
+    
+        insert_preferences($_POST["weekday".$i], $_POST["start"][$i],$_POST["end"][$i], $late);
     }
-
-    insert_preferences($_POST["sun_s"], $_POST["sun_e"], $_POST["mon_s"], $_POST["mon_e"], $_POST["tues_s"], $_POST["tues_e"], $_POST["wed_s"], $_POST["wed_e"], $_POST["thur_s"], $_POST["thur_e"], $late);
+   
 }
 
 ?>

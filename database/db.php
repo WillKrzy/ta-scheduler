@@ -171,7 +171,7 @@
     function insert_preferences($weekday, $start, $end, $late_shift) {
         global $connection;
         $id = $_SESSION['id'];
-        $queryStr = "INSERT INTO `preferences` VALUES(Default,?,?,?,?)";
+        $queryStr = "INSERT INTO `preferences` VALUES(Default,?,?,?,?,?)";
         $stmt = $connection->prepare($queryStr);
         $stmt->bind_param("isssi", $id, $weekday, $start, $end, $late_shift);
         $stmt->execute();

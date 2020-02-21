@@ -1,7 +1,7 @@
 function check_hours() {
     var currDay = new Date();
     var weekDay = currDay.getDay();
-    if (weekDay > 0 && weekDay < 5) {
+    if (weekDay > 0 && weekDay < 6) {
         if(currDay.getHours() >= 17 && currDay.getHours() <= 23) {
             document.getElementById("workin").innerHTML = "The TA's are : IN";
             check_questions();
@@ -22,6 +22,8 @@ function check_hours() {
             close_hours();
         }
 
+    } else {
+        document.getElementById("workin").innerHTML = "The TA's are : OUT";
     }
 
 }

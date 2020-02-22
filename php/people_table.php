@@ -18,7 +18,7 @@ include("../database/db.php");
         echo "</td>";
         echo "<td>";
         $button = "<form action=\"/php/add_people.php?delete=1\" method=\"post\"> 
-        <input type=\"submit\" name=\"person\" value=\"Delete ";
+        <input type=\"submit\" class=\"btn btn-danger\"name=\"person\" value=\"Delete ";
         $button .= $person['username'];
         $button .= "\"/>  </form>"; 
         echo $button;

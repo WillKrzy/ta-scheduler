@@ -31,6 +31,24 @@ function remove_input() {
     }
 }
 
+function  validateForm() {
+    var error_free = true;
+    var starts = document.getElementsByName('start[]');
+    var ends = document.getElementsByName('end[]');
+    for (var i = 0; i < starts.length; i++) {
+        console.log(ends[i].value);
+        console.log(starts[i].value);
+        if (ends[i].value < starts[i].value) {
+            ends[i].setCustomValidity("end cannot be before start");
+            error_free = false;
+        } else {
+            ends[i].setCustomValidity("");
+        }
+    }
+    return error_free;
+
+}
+
 //run on load
 if (window.XMLHttpRequest) {
     // code for IE7+, Firefox, Chrome, Opera, Safari

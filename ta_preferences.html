@@ -42,7 +42,7 @@
         <div id="preferences" class="col-lg justify-content-center">
 
         </div>
-        <form action="php/pref_survey.php" method="post">
+        <form action="php/pref_survey.php" method="post" onsubmit="return validateForm()">
             <div id="inputs">
                 <div id="pref" class="form-group">
                     <label>Weekday</label>
@@ -58,16 +58,16 @@
                     <br>
                     <label>Start</label>
                     <input type="time" class="form-control" name="start[]" min="08:00"
-                            max="23:00">
+                            max="23:00" required oninput="this.setCustomValidity('')">
                     <label >End</label>
                     <input type="time" class="form-control" name="end[]" min="08:00"
-                            max="23:00">
+                            max="23:00" required oninput="this.setCustomValidity('')">
                 </div>
                 <div id="late" class="form-group text-center">
                     <h5 style="text-align: center">I Prefer Late Shifts</h5>
-                        <input type="radio" id="yes" name="late_shifts0" value="Yes">
+                        <input type="radio" id="yes" name="late_shifts0" value="Yes" required>
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="late_shifts0" value="No">
+                        <input type="radio" id="no" name="late_shifts0" value="No" required>
                         <label for="no">No</label>
                 </div>
             </div>

@@ -60,8 +60,11 @@ if(isset($_POST['submit'])) {
         } else {
             $late = 0;
         }
-    
-        insert_preferences($_POST["weekday".$i], $_POST["start"][$i],$_POST["end"][$i], $late);
+        if($_POST["end"] < $_POST["start"]) {
+            echo "<p> Invalid preference for " . $_POST["weekday".$i]."</p>";
+        } else {
+            insert_preferences($_POST["weekday".$i], $_POST["start"][$i],$_POST["end"][$i], $late);
+        }
     }
 }
    

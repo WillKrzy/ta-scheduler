@@ -266,4 +266,25 @@
         return $stmt->get_result();
     }
 
+    function personal_prefs() {
+        global $connection;
+        $id = $_SESSION["id"];
+        $queryStr = "SELECT id, weekday, start, end, late_shifts FROM 
+        preferences where person_id = ?";
+        $stmt = $connection->prepare($queryStr);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        return $stmt->get_result();
+
+    }
+
+    function delete_pref($pref_id) {
+        global $connection;
+        $queryStr = "DELETE FROM preferences where id = ?";
+        $stmt = $connection->prepare($queryStr);
+        $stmt->bind_param("i", $pref_id);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
+
 ?>

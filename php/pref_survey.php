@@ -43,6 +43,9 @@
         </div>
     </nav>
     <p> Thank You. Dont forget to turn in Paper Work to Mrs. Laycock.</p>
+    <form method="post">
+         <button type="submit" name="button1">Return to Preferences</button>
+    </form>
 <body>
 
 <?php
@@ -60,7 +63,10 @@ if(isset($_POST['submit'])) {
     
         insert_preferences($_POST["weekday".$i], $_POST["start"][$i],$_POST["end"][$i], $late);
     }
+}
    
+if (isset($_POST["button1"])) {
+    header( "Location: ../../../../ta_preferences.html");
 }
 
 ?>

@@ -8,6 +8,9 @@
         echo $resp['name'];
         echo "</td>";
         echo "<td>";
+        echo $resp['username'];
+        echo "</td>";
+        echo "<td>";
         echo $resp['weekday'];
         echo "</td>";
         echo "<td>";

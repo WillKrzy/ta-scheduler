@@ -51,6 +51,7 @@
                     <thead>
                         <tr>
                             <th>TA Name</th>
+                            <th>Username</th>
                             <th>Weekday</th>
                             <th>Times</th>
                             <th>Can Work Late Shifts?</th>

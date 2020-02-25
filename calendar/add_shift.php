@@ -7,7 +7,7 @@ $start = $_POST['start'];
 $end = $_POST['end'];
 
 //Update owner to int
-$request = "SELECT person.id FROM shift JOIN person ON person.id = shift.owner WHERE person.username='{$owner}'";
+$request = "SELECT person.id FROM person WHERE person.username='{$owner}'";
 $result =  $connection->query($request) ->fetch_row();
 $owner = $result[0];
 

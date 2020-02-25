@@ -72,6 +72,7 @@ var calendar = $('#calendar').fullCalendar({
             );
           }
         calendar.fullCalendar('unselect');
+        location.reload();
     },
         editable: canEdit,
         eventDrop: function (event, delta) {

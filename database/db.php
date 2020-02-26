@@ -43,20 +43,16 @@
     }
     function survey_resp_today() {
         global $connection;
-        $queryStr = "SELECT code, professor, text FROM `feedback` WHERE datetime >= CURRENT_DATE() AND datetime <= CURRENT_DATE() + 1";
+        $queryStr = "SELECT code, professor, datetime, text FROM `feedback` WHERE datetime >= CURRENT_DATE() AND datetime <= CURRENT_DATE()";
         $data = $connection->query($queryStr);
         return $data;
     }
-    function survey_resp_date($date) {
+    function survey_resp_date($from, $to) {
         global $connection;
-        //must change to do math
-        $date2 = DateTime::createFromFormat('Y-m-d', $date);
-        date_add($date2, date_interval_create_from_date_string('1 days'));
-        //change back
-        $date2 = $date2->format("Y-m-d");
-        $queryStr = "SELECT code, professor, text FROM `feedback` WHERE datetime >= (?) AND datetime <= (?)";
+        $queryStr = "SELECT code, professor, text, datetime FROM `feedback` WHERE datetime >= (?) AND datetime <= (?)
+            ORDER BY code, professor";
         $stmt = $connection->prepare($queryStr);
-        $stmt->bind_param("ss", $date, $date2);
+        $stmt->bind_param("ss", $from, $to);
         $stmt->execute();
         return $stmt->get_result();
     }

@@ -45,7 +45,10 @@
     <div class="text-center pt-4" id="student_resp">
         <form onsubmit="return load_survey_resp_tables_date()" class="form-inline">
             <div class="form-group">
-                <input type="date" class="form-control" id="date">
+                <label for="from">From Date</label>
+                <input type="date" class="form-control" id="from" required>
+                <label for="to">To Date</label>
+                <input type="date" class="form-control" id="to" required>
                 <input type="submit" class="form-control">
             </div>
         </form>
@@ -55,6 +58,7 @@
                     <th>Class Number</th>
                     <th>Professor</th>
                     <th>Feedback</th>
+                    <th>Date</th>
                 </tr>
             </thead>
             <tbody id="survey_resp">

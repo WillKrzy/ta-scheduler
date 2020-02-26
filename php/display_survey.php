@@ -3,9 +3,10 @@
 
 include("../database/db.php");
 
-if(isset($_GET["date"])) {
-    $date = $_GET["date"];
-    $data = survey_resp_date($date);
+if(isset($_GET["from"])) {
+    $from = $_GET["from"];
+    $to = $_GET["to"];
+    $data = survey_resp_date($from, $to);
 } else {
     $data = survey_resp_today();
 }
@@ -20,6 +21,9 @@ while ($resp = $data->fetch_assoc()) {
     echo "</td>";
     echo "<td>";
     echo $resp['text'];
+    echo "</td>";
+    echo "<td>";
+    echo $resp['datetime'];
     echo "</td>";
     echo "</tr>";
 }

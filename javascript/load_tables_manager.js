@@ -51,8 +51,9 @@ function load_survey_resp_tables_date($event) {
         }
     };  
 
-    date = document.getElementById("date").value ;
-    xmlhttp.open("GET","php/display_survey.php?date=" + date, true);
+    var from = document.getElementById("from").value ;
+    var to = document.getElementById("to").value ;
+    xmlhttp.open("GET","php/display_survey.php?from=" + from + "&to=" + to, true);
     xmlhttp.send();
 }
 

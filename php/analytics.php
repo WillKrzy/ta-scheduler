@@ -1,45 +1,18 @@
 <?php
 include("../database/db.php");
-$courses = array("149", "159", "240");
-$courseCounter = [
-    "149" => 0,
-    "159" => 0,
-    "240" => 0,
-];
-$coursePercent = [
-    "149" => 0,
-    "159" => 0,
-    "240" => 0,
-];
 
 // Course calculation
 $dataCourses = get_courses();
-$totalCourses = 0;
+$dataPointsCourses  = array();
 
 if ($dataCourses->num_rows > 0) {
     // output data of each row
     while ($row = $dataCourses->fetch_assoc()) {
-        $code = $row["code"];
-        if (in_array($code, $courses)) {
-            $courseCounter[$code]++;
-            $totalCourses++;
-        }
-        //  echo "Code: " . $row["code"]. "<br>";
+        $dataPointsCourses[] = array("label" => $row["code"], "y" => $row["Percent"]);
     }
 } else {
     echo "0 results";
 }
-
-// Get percentages for pie chart
-foreach ($coursePercent as $key => $value) {
-    $coursePercent[$key] = ($courseCounter[$key] / $totalCourses) * 100;
-}
-
-$dataPointsCourses = array(
-    array("label" => "CS 149", "y" => $coursePercent["149"]),
-    array("label" => "CS 159", "y" => $coursePercent["159"]),
-    array("label" => "CS 240", "y" => $coursePercent["240"])
-);
 
 ?>
 <!DOCTYPE HTML>

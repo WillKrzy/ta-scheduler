@@ -59,7 +59,9 @@
     
     function get_courses() {
         global $connection;
-        $queryStr = "SELECT code FROM `feedback`";
+        $queryStr = "SELECT code, (COUNT(code) * 100 / (SELECT Count(*) FROM feedback)) AS Percent
+        FROM feedback
+        GROUP BY code";
         $stmt = $connection->prepare($queryStr);
         $stmt->execute();
         return $stmt->get_result();

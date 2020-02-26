@@ -55,7 +55,7 @@ $dataPointsCourses = array(
                     text: "Class Share of TA Hour Survey Responses"
                 },
                 subtitles: [{
-                    text: "December 2019"
+                    text: "All Time"
                 }],
                 data: [{
                     type: "pie",

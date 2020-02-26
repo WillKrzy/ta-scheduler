@@ -33,9 +33,6 @@ function load_survey_resp_tables() {
 }
 
 
-
-
-
 function load_survey_resp_tables_date($event) {
     event.preventDefault();
     if (window.XMLHttpRequest) {
@@ -55,6 +52,11 @@ function load_survey_resp_tables_date($event) {
     var to = document.getElementById("to").value ;
     xmlhttp.open("GET","php/display_survey.php?from=" + from + "&to=" + to, true);
     xmlhttp.send();
+
+    var profPie = document.getElementById("profPie");
+    profPie.setAttribute("src","php/profChart.php?from=" + from + "&to=" +to);
+    var classPie = document.getElementById("classPie");
+    classPie.setAttribute("src","php/analytics.php?from=" + from + "&to=" +to);
 }
 
 

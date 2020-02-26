@@ -66,7 +66,31 @@
         $stmt->execute();
         return $stmt->get_result();
     }
+
+    function get_coursesRange($from , $to) {
+        global $connection;
+        $queryStr = "SELECT code, (COUNT(code) * 100 / (SELECT Count(*) FROM feedback)) AS Percent
+        FROM feedback
+        WHERE datetime >= (?) AND datetime <= (?)
+        GROUP BY code";
+        $stmt = $connection->prepare($queryStr);
+        $stmt->bind_param("ss", $from, $to);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
         
+    function get_professorsRange($from, $to) {
+        global $connection;
+        $queryStr = "SELECT professor, (COUNT(professor) * 100 / (SELECT Count(*) FROM feedback)) AS Percent
+        FROM feedback
+        WHERE datetime >= (?) AND datetime <= (?)
+        GROUP BY professor";
+        $stmt = $connection->prepare($queryStr);
+        $stmt->bind_param("ss", $from, $to);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
+
     function get_professors() {
         global $connection;
         $queryStr = "SELECT professor, (COUNT(professor) * 100 / (SELECT Count(*) FROM feedback)) AS Percent

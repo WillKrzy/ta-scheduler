@@ -1,6 +1,16 @@
 <?php
 include("../database/db.php");
 
+
+$subtitle = "All Time";
+$dataCourses;
+if(isset($_GET["to"]) && isset($_GET["from"])) {
+    $subtitle = "From ". $_GET["from"]. " to ".$_GET["to"];
+    $dataCourses = get_coursesRange($_GET["from"], $_GET["to"]);
+} else {
+    $dataCourses = get_courses();
+}
+
 // Course calculation
 $dataCourses = get_courses();
 $dataPointsCourses  = array();
@@ -13,6 +23,8 @@ if ($dataCourses->num_rows > 0) {
 } else {
     echo "0 results";
 }
+
+
 
 ?>
 <!DOCTYPE HTML>
@@ -28,7 +40,7 @@ if ($dataCourses->num_rows > 0) {
                     text: "Class Share of TA Hour Survey Responses"
                 },
                 subtitles: [{
-                    text: "All Time"
+                    text : "<?php echo $subtitle ?>"
                 }],
                 data: [{
                     type: "pie",

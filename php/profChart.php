@@ -2,9 +2,15 @@
 include("../database/db.php");
 
 // Prof calculation
-$dataProfs = get_professors();
-$totalProf = 0;
+$subtitle = "All Time";
+$dataProfs;
 
+if(isset($_GET["to"]) && isset($_GET["from"])) {
+    $subtitle = "From ". $_GET["from"]. " to ".$_GET["to"];
+    $dataProfs = get_professorsRange($_GET["from"], $_GET["to"]);
+} else {
+    $dataProfs = get_professors();
+}
 
 $dataPointsProfessors = array();
 if ($dataProfs->num_rows > 0) {
@@ -33,7 +39,7 @@ if ($dataProfs->num_rows > 0) {
                     text: "Professor Share of TA Hour Survey Responses"
                 },
                 subtitles: [{
-                    text: "All Time"
+                    text:  "<?php echo $subtitle ?>"
                 }],
                 data: [{
                     type: "pie",

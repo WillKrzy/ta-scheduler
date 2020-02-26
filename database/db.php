@@ -67,7 +67,9 @@
         
     function get_professors() {
         global $connection;
-        $queryStr = "SELECT professor FROM `feedback`";
+        $queryStr = "SELECT professor, (COUNT(professor) * 100 / (SELECT Count(*) FROM feedback)) AS Percent
+        FROM feedback
+        GROUP BY professor";
         $stmt = $connection->prepare($queryStr);
         $stmt->execute();
         return $stmt->get_result();

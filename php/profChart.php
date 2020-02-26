@@ -1,51 +1,21 @@
 <?php
 include("../database/db.php");
-$professors = array("Bowers", "Sprague", "Weikle", "Bernstein");
-$profCounter = [
-    "Bowers" => 0,
-    "Sprague" => 0,
-    "Weikle" => 0,
-    "Bernstein" => 0,
-];
-$profPercent = [
-    "Bowers" => 0,
-    "Sprague" => 0,
-    "Weikle" => 0,
-    "Bernstein" => 0,
-];
 
 // Prof calculation
 $dataProfs = get_professors();
 $totalProf = 0;
 
+
+$dataPointsProfessors = array();
 if ($dataProfs->num_rows > 0) {
     // output data of each row
     while ($row = $dataProfs->fetch_assoc()) {
-        $prof = $row["professor"];
-        if (in_array($prof, $professors)) {
-            $profCounter[$prof]++;
-            $totalProf++;
-        }
-        //  echo "Code: " . $row["code"]. "<br>";
+        //$tmp = array("label" => $row["professor"], "y" => $row["Percent"]);
+        $dataPointsProfessors[] = array("label" => $row["professor"], "y" => $row["Percent"]);
     }
 } else {
     echo "0 results";
 }
-
-// Get percentages for pie chart
-foreach ($profPercent as $key => $value) {
-    $profPercent[$key] = ($profCounter[$key] / $totalProf) * 100;
-}
-
-// Add other professors here
-$dataPointsProfessors = array(
-    array("label" => "Dr. Bowers", "y" => $profPercent["Bowers"]),
-    array("label" => "Dr. Sprague", "y" => $profPercent["Sprague"]),
-    array("label" => "Dr. Bernstein", "y" => $profPercent["Bernstein"]),
-    array("label" => "Dr. Weikle", "y" => $profPercent["Weikle"])
-);
-
-
 
 
 ?>

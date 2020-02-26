@@ -57,9 +57,6 @@ var calendar = $('#calendar').fullCalendar({
               url: '/calendar/add_shift.php',
               data: 'title=' + title + '&start=' + start + '&end=' + end,
               type: "POST",
-              success: function (json) {
-                alert('Added Successfully');
-            }
             });
             calendar.fullCalendar('renderEvent',
                 {
